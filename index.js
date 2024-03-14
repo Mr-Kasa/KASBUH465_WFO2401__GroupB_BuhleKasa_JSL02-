@@ -19,9 +19,21 @@ document.querySelector('#submitWorkout').addEventListener('click', displayWorkou
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
 const addNewGoal = () => {
-    const goalInput = document.querySelector('#goalInput').value;
-    const goalList = document.querySelector('#goalList');
-    
+    const goalInput = document.querySelector('#goalInput').value; //copy input  
+    const goalList = document.querySelector('#goalList');      // (1) add to array or find built in functions
+                                                               // (2)  check array values if they equate to the new input
+                                                               //  (3)  display alert if duplicated using event listener
+                                                               //  (4)  condition for duplicates
+
+    if (goalList.includes(goalInput)===true)
+    {const notification = (event) => {                                  // add copy for duplicates in a conditional statement 
+        event.preventDefault(); 
+        alert('Goal already exists!');   
+        goalInput = "";   
+    }
+    }
+
+
     // ⚠️ Hint 1: Check for duplicates
     // Use 'goalList' to get all existing goals and check if 'goalInput' matches any of them.
     
@@ -36,13 +48,14 @@ const addNewGoal = () => {
     // The event listener that removes goals when clicked is not related to this issue.
     // Focus on preventing duplicates for now.
     
-    const newGoal = document.createElement('li');
+    const newGoal = document.createElement('li');    // gets appernded  on ui
     newGoal.textContent = goalInput;
     goalList.appendChild(newGoal);
 };
 
 // Add event listener to the goal submit button
 document.querySelector('#submitGoal').addEventListener('click', addNewGoal);
+document.querySelector('#submitGoal').addEventListener('click', notification);
 
 ///
 let waterIntake = 0;
@@ -67,9 +80,9 @@ const toggleTheme = () => {
 
 document.querySelector('#themeToggle').addEventListener('click', toggleTheme);
 
-const submitMealPlan = (event) => {
+const submitMealPlan = (event) => {                                  // add copy for duplicates in a conditional statement 
     event.preventDefault(); 
-    alert('Meal plan submitted successfully! 🍴');
+    alert('Meal plan submitted successfully! 🍴');      
 };
 
 document.querySelector('#mealPlanForm').addEventListener('submit', submitMealPlan);
