@@ -52,27 +52,36 @@ const addNewGoal = () => {
     const goalInput =document.querySelector('#goalInput').value;  
     const goalList = document.querySelectorAll('#goalList');
     let arrayList
-    let goalInputObject = JSON.parse({goalinput})
-   
-    console.log(typeof(goalInputObject))
+
+   let goalListitems = document.querySelectorAll('#goalList ul').values
+
+//console.log(goalListitems)
 
     for(i=0;i<goalList.length; i++)
-    { arrayList = Array.prototype.slice.call(goalList)
+    { arrayList += Array.prototype.slice.call(goalList)
     }
-    console.log(typeof(arrayListstring))
-   console.log( arrayList.includes(goalInput))
-    
-    if(1+1==2){
+  
+    if(goalInput===""){
+        const noval = () => {
+        alert("Please enter your workout goals");
+    };
+    noval()
+    }
+
+    else if(arrayList.includes(goalInput)===true){
     const alertmsg = () => { 
-        alert('Goal already exists!');      
+        alert('Goal already exists!'); 
     } 
     alertmsg()
+    console.log( arrayList.includes(goalInput),typeof(arrayList), arrayList) 
     }
-    else{
-        const newGoal = document.createElement('li');    // gets appernded  on ui
-        newGoal.textContent = goalInput;       
+    else
+    {
+        const newGoal = document.createElement('li');
+        newGoal.textContent = goalInput;
         goalList.appendChild(newGoal);
-}
+        console.log(typeof(goalList), typeof(newGoal))
+    }
 };
 
 
