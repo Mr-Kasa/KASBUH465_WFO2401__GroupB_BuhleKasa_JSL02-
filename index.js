@@ -13,59 +13,31 @@ const displayWorkoutRoutine = () => {
 };
 
 document.querySelector('#submitWorkout').addEventListener('click', displayWorkoutRoutine);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ⚠️⚠️⚠️ Lesson 3: Creating and Removing Elements ⚠️⚠️⚠️
-// Function to add new fitness goals and remove completed ones
-// NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
-
+/*************************************Working Area*********************************************/
+// Important thing to note. 
+//Query selectors give object outputs
+//
 const addNewGoal = () => {
-    const goalInput = document.querySelector('#goalInput').value.trim(); //trim removes white spaces
+    const goalInput = document.querySelector('#goalInput').value.trim(); //trim removes white spaces so that comparisons dont include them
     const goalList = document.querySelector('#goalList');
-                            //importent to use (from) method to find and grab objects
+                            //important to use (from) method to find and grab object items
     const goalListArray = Array.from(goalList.querySelectorAll('li')/*returns array using goallist items*/).map(item => item.textContent.trim()/*creates a new array putting text in it*/);    //takes input puts it in a object array
     console.log(goalListArray, goalList)
     if (goalInput === "") {
         const Enter = () => {                         
-            alert('Please enter atleast 1 workout goal!');      
+            alert('Having goals makes your workouts well paced and efficient. Please enter atleast 1 workout goal.🚩');      //function calling alert for empty input
         };
         Enter()
-    } else if (goalListArray.includes(goalInput)) {
+    } else if (goalListArray.includes(goalInput)) {             //function calling alert for existing goal entry
         const Exists = () => {                         
             alert('Goal already exists!');      
         };
         Exists()
     } else {
         const newGoal = document.createElement('li');
-        newGoal.textContent = goalInput;
+        newGoal.textContent = goalInput;                        //Appending new goal 
         goalList.appendChild(newGoal);
-        document.querySelector('#goalInput').value = ""; 
+        document.querySelector('#goalInput').value = "";   //clearing input field after every submition
     }
 };
 
