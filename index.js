@@ -46,66 +46,30 @@ document.querySelector('#submitWorkout').addEventListener('click', displayWorkou
 // NOW LET'S DEBUG TO PREVENT DUPLICATE GOALS FROM BEING SUBMITTED 🚀
 
 const addNewGoal = () => {
-
-
-
-    const goalInput =document.querySelector('#goalInput').value;  
-    const goalList = document.querySelectorAll('#goalList');
-    let arrayList
-
-   let goalListitems = document.querySelectorAll('#goalList ul').values
-
-//console.log(goalListitems)
-
-    for(i=0;i<goalList.length; i++)
-    { arrayList += Array.prototype.slice.call(goalList)
-    }
-  
-    if(goalInput===""){
-        const noval = () => {
-        alert("Please enter your workout goals");
-    };
-    noval()
-    }
-
-    else if(arrayList.includes(goalInput)===true){
-    const alertmsg = () => { 
-        alert('Goal already exists!'); 
-    } 
-    alertmsg()
-    console.log( arrayList.includes(goalInput),typeof(arrayList), arrayList) 
-    }
-    else
-    {
+    const goalInput = document.querySelector('#goalInput').value.trim(); //trim removes white spaces
+    const goalList = document.querySelector('#goalList');
+                            //importent to use (from) method to find and grab objects
+    const goalListArray = Array.from(goalList.querySelectorAll('li')/*returns array using goallist items*/).map(item => item.textContent.trim()/*creates a new array putting text in it*/);    //takes input puts it in a object array
+    console.log(goalListArray, goalList)
+    if (goalInput === "") {
+        const Enter = () => {                         
+            alert('Please enter atleast 1 workout goal!');      
+        };
+        Enter()
+    } else if (goalListArray.includes(goalInput)) {
+        const Exists = () => {                         
+            alert('Goal already exists!');      
+        };
+        Exists()
+    } else {
         const newGoal = document.createElement('li');
         newGoal.textContent = goalInput;
         goalList.appendChild(newGoal);
-        console.log(typeof(goalList), typeof(newGoal))
+        document.querySelector('#goalInput').value = ""; 
     }
 };
 
-
-    // Add event listener to the goal submit button*/
-    document.querySelector('#submitGoal').addEventListener('click', addNewGoal);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.querySelector('#submitGoal').addEventListener('click', addNewGoal);
 
 ///
 let waterIntake = 0;
