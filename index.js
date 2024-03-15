@@ -22,10 +22,11 @@ const addNewGoal = () => {
     const goalList = document.querySelector('#goalList');
                             //important to use (from) method to find and grab object items
     const goalListArray = Array.from(goalList.querySelectorAll('li')/*returns array using goallist items*/).map(item => item.textContent.trim()/*creates a new array putting text in it*/);    //takes input puts it in a object array
+    
     console.log(goalListArray, goalList)
     if (goalInput === "") {
         const Enter = () => {                         
-            alert('Having goals makes your workouts well paced and efficient. Please enter atleast 1 workout goal.🚩');      //function calling alert for empty input
+            alert('Empty Entry.🚩');      //function calling alert for empty input
         };
         Enter()
     } else if (goalListArray.includes(goalInput)) {             //function calling alert for existing goal entry
